@@ -5,4 +5,4 @@ Reference: https://github.com/HadiFadl/Hive-cmd/tree/master/bin
 
 Some `.cmd` files from the above Github link are not working properly, so I modified them into working condition. Additionally, I added `schematool.cmd`, `metatool.cmd`, `version.cmd` and other `.cmd` files. 
 
-You can just download these files, copy under the exact folder structure in HIVE_HOME directory and start running.
+You can just download these files, copy to the exact folder structure in HIVE_HOME directory and start running.
