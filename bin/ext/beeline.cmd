@@ -44,27 +44,29 @@ if not exist %HADOOP_HOME%\libexec\hadoop-config.cmd (
 set HADOOP_HOME_WARN_SUPPRESS=true
 call %HADOOP_HOME%\libexec\hadoop-config.cmd
 
+
 @rem include only the beeline client jar and its dependencies
 pushd %HIVE_HOME%\lib
 for /f %%a IN ('dir /b hive-beeline-**.jar') do (
-  set CLASSPATH=%CLASSPATH%;%HIVE_HOME%\lib\%%a
+  set BeelineJarPath=%HIVE_HOME%\lib\%%a
 )
 for /f %%a IN ('dir /b super-csv-**.jar') do (
-  set CLASSPATH=%CLASSPATH%;%HIVE_HOME%\lib\%%a
+  set SuperCsvJarPath=%HIVE_HOME%\lib\%%a
 )
 for /f %%a IN ('dir /b jline-**.jar') do (
-  set CLASSPATH=%CLASSPATH%;%HIVE_HOME%\lib\%%a
-)
-for /f %%a IN ('dir /b hive-jdbc-**-standalone.jar') do (
-  set CLASSPATH=%CLASSPATH%;%HIVE_HOME%\lib\%%a
+  set JlineJarPath=%HIVE_HOME%\lib\%%a
 )
 
 popd
 
+set HADOOP_CLASSPATH=%HADOOP_CLASSPATH%;%HIVE_CONF_DIR%;%BeelineJarPath%;%SuperCsvJarPath%;%JlineJarPath%
+set HADOOP_CLIENT_OPTS=%HADOOP_CLIENT_OPTS% -Dlog4j.configurationFile=beeline-log4j2.properties
+
 if [%1]==[beeline_help] goto :beeline_help
 
 :beeline
-	call %JAVA_HOME%\bin\java %JAVA_HEAP_MAX% %HADOOP_OPTS% -classpath %CLASSPATH% org.apache.hive.beeline.BeeLine %*
+	set CLASS=org.apache.hive.beeline.BeeLine
+	call %HIVE_BIN_PATH%\ext\util\execHiveCmd.cmd %BeelineJarPath% %CLASS%
 goto :EOF
 
 :beeline_help
