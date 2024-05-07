@@ -265,9 +265,6 @@ if defined AUX_PARAM (
 	set AUX_JARS_CMD_LINE="-libjars %AUX_PARAM%"
 )
 
-@rem to initialize logging for all services
-set HADOOP_CLIENT_OPTS=%HADOOP_CLIENT_OPTS% -Dlog4j.configurationFile=hive-log4j2.properties
-
 @rem Get ready to run the services
 set SERVICE_LIST=
 set SERVICE_COUNT=0

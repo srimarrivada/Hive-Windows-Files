@@ -59,3 +59,7 @@ rem set HIVE_AUX_JARS_PATH=
 	goto :Loop
 
 :FinishLoop
+
+@rem to initialize logging for all services
+set HADOOP_CLIENT_OPTS=%HADOOP_CLIENT_OPTS% -Dlog4j.configurationFile=hive-log4j2.properties
+set HADOOP_CLIENT_OPTS=%HADOOP_CLIENT_OPTS% -Dlog4j2.formatMsgNoLookups=true
