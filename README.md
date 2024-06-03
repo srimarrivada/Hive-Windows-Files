@@ -1,5 +1,5 @@
 # Hive-Windows-Files
-It consists of all windows files (.cmd) that are needed to run Apache Hive 3.1.3 version on Windows operating system.
+It consists of all windows files (.cmd) that are needed to run Apache Hive version on Windows operating system.
 
 Reference: https://github.com/HadiFadl/Hive-cmd/tree/master/bin
 
